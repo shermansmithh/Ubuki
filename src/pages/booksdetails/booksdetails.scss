@@ -1,0 +1,26 @@
+page-booksdetails {
+.BookReading{
+    height: 100%
+}
+
+.coverCollumn {
+    float: left;
+    background-color: #dfe0e0;
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .textCollumn {
+    overflow-y: scroll;
+    height: 100%;
+    padding: 20px;
+    width: 50%;
+    float: left;
+    background-color: #ebeced;
+    padding-bottom: 60px;
+  }
+  
+   
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Unbuki",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

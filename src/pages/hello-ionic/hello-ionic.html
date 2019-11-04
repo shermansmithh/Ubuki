@@ -1,0 +1,62 @@
+<ion-header no-border>
+  <ion-navbar color="toolbar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <div *ngIf="!logged" (click)="goToLogin()" ion-text color="light">LOG IN</div>
+      <div *ngIf="logged" (click)="logout()" ion-text color="light">LOGOUT</div>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md>
+        <div>
+          1 of 4
+        </div>
+      </ion-col>
+      <ion-col size="12" size-md>
+        <div>
+          2 of 4
+        </div>
+      </ion-col>
+      <ion-col size="12" size-md>
+        <div>
+          3 of 4
+        </div>
+      </ion-col>
+      <ion-col size="12" size-md>
+        <div>
+          4 of 4
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div id="homePage">
+    <div class="logoBuki"><img src="../../assets/imgs//logoBuki.png" height="200" alt="" /></div>
+    <div style="font-size: 13px; padding: 15px;">
+      E proyekto “Un Buki Pa Lesa” a wordu lansa na 2016 komo regalo pa e komunidat di Korsou na okashon
+      di selebrashon di 35 aña di eksistensia di JCI Involvement of Banda Ariba (IOBA) Curacao. “Un Buki Pa
+      Lesa” ta kontribui na e desaroyo di edukashon na Korsou na un manera “SMART”. Den e prome fase di e
+      proyekto (2016) e hoben nan aktivo di JCI IOBA Curacao a uni forsa i skirbi buki nan pa mucha nan di
+      “skol di fundeshi” na nos idioma Papiamentu.
+      Pa hasi uso di inovashon i teknologia avansa, nos a skohe pa digitalisa i anima e buki nan. Asinaki nan ta
+      aksesibel via “smart devices”. Den e di dos fase di e proyekto nos a desaroya e aplikashon kual lo ser
+      huza pa por lesa e buki nan via “smart devices” (2016 – 2018).
+      JCI IOBA Curacao ta orguyoso pa por drenta den e delaster fase di e proyekto, kual ta hasi e aplikashon
+      aksesibel pa nos mucha nan (2019). Nos meta ta pa enkurasha nos mucha nan lesa buki na nan mes
+      idioma I sigui desaroya nan abilidat pa kompronde e idioma. Tambe nos deseo ta pa e buki nan yuda
+      amplia e desaroyo general propio di nos mucha nan.
+      Nos ta yama danki na tur partner, sponsor i partisipante na e proyekto ku a kontribui na hasi nos regalo
+      pa Korsou un realidat.
+    </div>
+  </div>
+
+
+</ion-content>
