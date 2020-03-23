@@ -1,0 +1,103 @@
+<ion-menu class="ion-menu" [content]="content" type="overlay">
+
+
+    <ion-header no-border>
+        <ion-toolbar color="toolbar">
+            <ion-title>Books</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="sidemenu">
+        <ion-row>
+            <ion-col align-items-center >
+                <ion-row align-items-center class="items" (click)= "closeTab()">
+                    <div class="icon">
+                        <i class="material-icons">
+                            close
+                        </i>
+                    </div>
+                </ion-row>
+                <ion-row align-items-center class="items" (click)="setSideMenu('books')">
+                    <div class="icon" [style.color]="sideMenu == 'books' ? '#00afd1' : 'black' ">
+                        <i class="material-icons"></i>
+                    </div>
+                    <div class="iconTxt" [style.color]="sideMenu == 'books'  ? '#00afd1' : 'black' ">Books</div>
+                </ion-row>
+                <ion-row align-items-center class="items" (click)="setSideMenu('font')">
+                    <div class="icon" [style.color]="sideMenu == 'font'  ? '#00afd1' : 'black' ">
+                        <i class="material-icons"></i>
+                    </div>
+                    <div class="iconTxt" [style.color]="sideMenu == 'font'  ? '#00afd1' : 'black' ">Font</div>
+
+                </ion-row>
+
+
+            </ion-col>
+            <ion-col *ngIf="sideMenu == 'books'">
+                <ion-list>
+                    <ion-item no-lines *ngFor="let p of pages" (click)="openPage(p) ">
+                        <img [src]="p.coverLink">
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+            <ion-col *ngIf="sideMenu == 'font'" class="right" >
+                    <ul >
+
+                            <li>
+                                <span [style.color]="fontFamily == 'Anton' ? '#00afd1': 'black'" (click)="setFontType('Anton')" class="fontAnton">Anton</span>
+                            </li>
+                            <li>
+                                <span [style.color]="fontFamily == 'Courgette' ? '#00afd1': 'black'" (click)="setFontType('Courgette')" class="fontCourgette">Courgette</span>
+                            </li>
+                            <li>
+                                <span [style.color]="fontFamily == 'Lato' ? '#00afd1': 'black'" (click)="setFontType('Lato')" class="fontLato">Lato</span>
+                            </li>
+                            <li>
+                                <span [style.color]="fontFamily == 'Kalam' ? '#00afd1': 'black'" (click)="setFontType('Kalam')" class="fontKalam">Kalam</span>
+                            </li>
+                            <li>
+                                <span [style.color]="fontFamily == 'Nunito' ? '#00afd1': 'black'" (click)="setFontType('Nunito')" class="fontVerdana">Nunito</span>
+                            </li>
+                            <li>
+                                <span [style.color]="fontFamily == 'Open Sans' ? '#00afd1': 'black'" (click)="setFontType('Open Sans')" class="fontOpenSans">Open Sans</span>
+                            </li>
+                            <li>
+                                <span [style.color]="fontFamily == 'Raleway' ? '#00afd1': 'black'" (click)="setFontType('Raleway')" class="fontRaleway">Raleway</span>
+                            </li>
+                            <li>
+                                <span [style.color]="fontFamily == 'Roboto' ? '#00afd1': 'black'" (click)="setFontType('Roboto')" class="fontRoboto">Roboto</span>
+                            </li>
+                            <li>
+                                <span [style.color]="fontFamily == 'Ubuntu' ? '#00afd1': 'black'" (click)="setFontType('Ubuntu')" class="fontRoboto">Ubuntu</span>
+                            </li>                        
+                            <li>
+                                &nbsp;
+                            </li>
+                            <li>
+                                <span [style.color]="fontSize == '12px' ? '#00afd1': 'black'" (click)="setFontSize('12px')" class="smallFont">Small</span>
+                            </li>
+                            <li>
+                                <span [style.color]="fontSize == '14px' ? '#00afd1': 'black'" (click)="setFontSize('14px')" class="mediumFont">Medium</span>
+                            </li>
+                            <li>
+                                <span [style.color]="fontSize == '16px' ? '#00afd1': 'black'" (click)="setFontSize('16px')" class="largeFont">Large</span>
+                            </li>
+                            <li>
+                                <span [style.color]="fontSize == '18px' ? '#00afd1': 'black'" (click)="setFontSize('18px')" class="xLargeFont">X-Large</span>
+                            </li>
+                        </ul>
+            </ion-col>
+        </ion-row>
+
+
+        <!-- <button (click)="addBook()">
+     ADD
+      </button>  -->
+        <!-- <img  *ngif ="p.coverLink"[src]="p.coverLink"> -->
+        <!-- <ion-img *ngif ="p.coverLink"[src]="p.coverLink"></ion-img> -->
+
+    </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

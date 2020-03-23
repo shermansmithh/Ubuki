@@ -10,6 +10,8 @@ import { LoginPage } from '../pages/login/login';
 import { AddbooksPage } from '../pages/addbooks/addbooks';
 import { BooksdetailsPage } from '../pages/booksdetails/booksdetails';
 import firebase from 'firebase';
+import { FontprovProvider } from '../providers/fontprov/fontprov';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -21,6 +23,10 @@ export class MyApp {
   pages: any;
   user: any;
   userId: string = "null"
+  sideMenu: string = 'books'
+  fontFamily: string ="Open Sans"
+  fontSize: string = '14px'
+
 
   constructor(
     public platform: Platform,
@@ -28,6 +34,7 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     private http: HttpClient,
+    public font: FontprovProvider
 
   ) {
     this.initializeApp();
@@ -53,13 +60,13 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.getBooks()
-     
-    
-      if (firebase.auth().currentUser !== null){
+
+
+      if (firebase.auth().currentUser !== null) {
         this.userId = firebase.auth().currentUser.uid;
         this.initUser();
       }
-     
+
 
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
@@ -125,5 +132,26 @@ export class MyApp {
     })
 
   }
+
+  closeTab() {
+    this.menu.close()
+  }
+
+  setSideMenu(chosen) {
+    this.sideMenu = chosen
+  }
+
+  setFontType(fontfamily) {
+    this.font.setFontType(fontfamily)
+    this.fontFamily = fontfamily
+  }
+
+  setFontSize(fontsize) {
+
+    this.font.setFontSize(fontsize)
+    this.fontSize = fontsize
+  }
+
+
 
 }

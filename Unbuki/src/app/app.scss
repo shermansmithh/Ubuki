@@ -1,0 +1,578 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+#app {
+  height: 100%;
+  background-color: #00afd1;
+}
+.page {
+  padding-top: 50px;
+  display: none;
+}
+#homePage .logoBuki {
+  /*        position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-top: -170px;
+                margin-left: -100px;*/
+  text-align: center;
+  padding-top: 20px;
+}
+.items {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
+.items .icon {
+  height: 35px;
+}
+.items .icon .material-icons {
+  font-size: 30px;
+  line-height: 40px;
+}
+.items .iconTxt {
+  font-size: 11px;
+}
+.on {
+  /*    background-color: #3f4652;
+        background-color: rgba(63, 70, 82, 0.8);*/
+}
+.sideMenu {
+}
+.sideMenu .menuHeader {
+  height: 70px;
+}
+.sideMenu .menuHeader .items {
+  /*            background-color:#272c33;
+                        background-color: rgba(39, 44, 51, 0.8);*/
+}
+.sideMenu .menuHeader .items .material-icons {
+  line-height: 70px;
+  font-size: 30px;
+}
+.sidemenu{
+
+
+ 
+}
+
+.items{
+    // text-align: center;
+    font-size: 30px;
+    padding: 20px;
+    color: black;
+}
+
+.sideMenu .left {
+  float: left;
+  width: 60px;
+  height: 100%;
+  background-color: #272c33;
+  background-color: rgba(39, 44, 51, 0.8);
+}
+.right {
+  padding: 20px;
+  height: 100%;
+  text-align: center;
+  width: 145px;
+}
+.right ul {
+ 
+  list-style: none;
+}
+.right ul li {
+  cursor: pointer;
+  line-height: 40px;
+}
+.right ul li .textHeader {
+  font-weight: 400;
+  font-size: 12px;
+}
+.fontOpenSans {
+  font-family: 'Open Sans', sans-serif;
+}
+.fontNunito {
+  font-family: 'Nunito', sans-serif;
+}
+.fontAnton {
+  font-family: 'Anton', sans-serif;
+}
+.fontRaleway {
+  font-family: 'Raleway', sans-serif;
+}
+.fontRoboto {
+  font-family: 'Roboto', sans-serif;
+}
+.fontCourgette {
+  font-family: 'Courgette', cursive;
+}
+.fontKalam {
+  font-family: 'Kalam', cursive;
+}
+.fontUbuntu {
+  font-family: 'Ubuntu', sans-serif;
+}
+.fontLato {
+  font-family: 'Lato', sans-serif;
+}
+.smallFont {
+  font-size: 12px;
+}
+.mediumFont {
+  font-size: 14px;
+}
+.largeFont {
+  font-size: 16px;
+}
+.xLargeFont {
+  font-size: 18px;
+}
+.sideMenu .right img {
+  cursor: pointer;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+textarea,
+input,
+button {
+  outline: none;
+}
+input {
+  border: 0;
+  background-color: #fff;
+}
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+* {
+  -o-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.header {
+  height: 50px;
+  background-color: #1978a2;
+}
+#loginPage .input,
+#loginPage .login {
+  width: 350px;
+  height: 50px;
+  margin: 10px auto 0 auto;
+}
+#loginPage .headerText {
+  text-align: center;
+  font-size: 14px;
+  color: #000;
+  padding: 10px 0;
+}
+#loginPage .input input {
+  border: 1px solid #01748b;
+  width: 100%;
+  height: 50px;
+  padding: 0 3px;
+}
+#loginPage .login {
+  background-color: #01748b;
+  color: #fff;
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  cursor: pointer;
+}
+#bookPage .bookPageMain {
+  padding: 15px;
+  font-size: 13px;
+}
+#bookPage .bookPageHeader {
+  height: 280px;
+  background-color: #dfe0e0;
+}
+#bookPage .bookPageHeader .cover {
+  text-align: center;
+  padding: 15px 0 5px 0;
+  height: 200px;
+}
+#bookPage .bookPageHeader .cover img {
+  max-height: 100%;
+  max-width: 100%;
+}
+#bookPage .bookPageHeader .amount {
+  border-radius: 5px;
+  width: 100px;
+  padding: 5px 0;
+  text-align: center;
+  font-size: 11px;
+  margin: 2px auto 10px auto;
+  background-color: #00afd1;
+  color: #fff;
+}
+#bookPage .bookPageHeader .author,
+#bookPage .bookPageHeader .title {
+  text-align: center;
+  font-size: 12px;
+}
+#bookReadingPage {
+  height: 100%;
+}
+#bookReadingPage .bookReadingPageFrame {
+  overflow: hidden;
+  height: 100%;
+}
+#bookReadingPage .bookReadingPageFrame .coverCollumn {
+  float: left;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  padding: 20px;
+}
+#bookReadingPage .bookReadingPageFrame .coverCollumn img {
+  max-width: 100%;
+  max-height: 100%;
+}
+#bookReadingPage .bookReadingPageFrame .textCollumn {
+  overflow-y: scroll;
+  height: 100%;
+  padding: 20px;
+  width: 50%;
+  float: left;
+  background-color: #ebeced;
+  padding-bottom: 60px;
+}
+.footerPageNavigation {
+  padding: 0px;
+  overflow: hidden;
+  background-color: #01748b;
+}
+.footerPageNavigation .btn-left {
+  float: left;
+}
+.footerPageNavigation .btn-left,
+.footerPageNavigation .btn-right {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+
+  ion-icon{
+    color: #fff;
+            line-height: 40px;
+            font-size: 20px;
+  }
+}
+.footerPageNavigation .btn-left .material-icons,
+.footerPageNavigation .btn-right .material-icons {
+  color: #fff;
+  line-height: 40px;
+  font-size: 40px;
+}
+.footerPageNavigation .btn-right {
+  float: right;
+}
+.footerBtn {
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+}
+.footerBtn .btn {
+  cursor: pointer;
+  background-color: #01748b;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  color: #fff;
+}
+.formFrame {
+  background-color: #fff;
+  line-height: 50px;
+  overflow: hidden;
+  border: 1px solid #cccccd;
+  border-radius: 7px;
+}
+.formFrame .lable {
+  float: left;
+  display: flex;
+  background-color: #00afd1;
+  font-size: 13px;
+  color: #fff;
+  padding: 0 10px;
+}
+.formFrame .input {
+  float: left;
+  padding: 0 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: 2px solid #eee;
+}
+.formFrame .accountVerified {
+  float: right;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+.formFrame .accountVerified svg {
+  display: block;
+  margin: auto;
+}
+.menu {
+  display: none;
+  background-color: #00afd1;
+  height: 50px;
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+}
+.menu .customerName {
+  display: none;
+  float: left;
+  display: block;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 15px;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+.menu .sideMenuIcon {
+  float: left;
+  display: block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 33px;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+.menu .accountContainer {
+  float: right;
+  display: block;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 15px;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+.menu .logoutContainer {
+  float: right;
+  display: none;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 15px;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+.menu .notification,
+.menu .friend {
+  cursor: pointer;
+  float: right;
+  line-height: 50px;
+  padding: 0 20px;
+  font-size: 24px;
+  color: #fff;
+}
+.menu .giftCardNotification {
+  position: absolute;
+  top: 6px;
+  text-align: center;
+  border-radius: 7px;
+  width: 14px;
+  font-weight: 800;
+  line-height: 14px;
+  color: #00a99c;
+  font-size: 8px;
+  height: 14px;
+  background-color: #fff;
+  right: 73px;
+}
+.menu .friendsNotification {
+  position: absolute;
+  top: 6px;
+  text-align: center;
+  border-radius: 7px;
+  width: 14px;
+  font-weight: 800;
+  line-height: 14px;
+  color: #00a99c;
+  font-size: 8px;
+  height: 14px;
+  background-color: #fff;
+  right: 11px;
+}
+.button {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+.button span {
+  display: block;
+  margin: 0 auto;
+}
+.btnOn {
+  cursor: pointer;
+  background-color: #00afd1;
+  color: #fff;
+}
+.btnOff {
+  background-color: #a8acac;
+  color: #fff;
+}
+.menuFrame {
+  display: none;
+  height: 60px;
+  background-color: #cdcdcd;
+  overflow: hidden;
+}
+.menuFrame .menuBlock {
+  cursor: pointer;
+  float: left;
+  width: 25%;
+  height: 60px;
+  font-size: 10px;
+  padding-top: 8px;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+}
+.menuFrame .menuBlock .payNotification {
+  position: relative;
+  margin: -7px auto -7px auto;
+  border-radius: 7px;
+  width: 14px;
+  line-height: 14px;
+  color: #fff;
+  font-size: 8px;
+  height: 14px;
+  background-color: #a9280b;
+  left: 17px;
+}
+.menuFrame .menuBlock .material-icons {
+  color: #404141;
+}
+.menuFrame .menuBlock .span {
+  display: block;
+  line-height: 56px;
+}
+.menuFrame .navActive {
+  background-color: #bababa !important;
+  border-style: solid !important;
+  border-width: 0 0 5px 0 !important;
+  border-color: #00afd1 !important;
+}
+.black_overlay {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.outPopUp {
+  position: absolute;
+  width: 330px;
+  height: 300px;
+  padding: 15px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -150px 0 0 -150px;
+  text-align: center;
+}
+.outPopUp .dialogIcon {
+  height: 140px;
+}
+.outPopUp .dialogIcon .material-icons {
+  font-size: 110px;
+  color: #fff;
+}
+.outPopUp .text {
+  color: #fff;
+  font-size: 14px;
+}
+.outPopUp .confirmationButton {
+  width: 180px;
+  height: 35px;
+  line-height: 35px;
+  color: #fff;
+  margin: 30px auto 0 auto;
+  text-align: center;
+  background-color: #00afd1;
+  font-size: 14px;
+  cursor: pointer;
+}
+@media (max-width: 600px) {
+  #bookReadingPage {
+    height: 100%;
+  }
+  #bookReadingPage .bookReadingPageFrame {
+    overflow: hidden;
+    clear: both;
+  }
+  #bookReadingPage .bookReadingPageFrame .coverCollumn {
+    width: 100%;
+    float: none !important;
+    height: auto;
+    padding: 0;
+  }
+  #bookReadingPage .bookReadingPageFrame .textCollumn {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 400px;
+    float: none !important;
+    overflow-y: scroll !important;
+  }
+
+  
+ 
+//  .content-md{
+//    background-color: #000 !important;
+//  }
+}
+/*# sourceMappingURL=index.css.map */

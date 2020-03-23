@@ -4,8 +4,9 @@ import { ItemDetailsPage } from '../item-details/item-details';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/';
 import firebase from 'firebase';
-import {LoginPage} from '../login/login'
-
+import { LoginPage } from '../login/login'
+import { FontprovProvider } from '../../providers/fontprov/fontprov';
+import { Observable } from 'rxjs/Observable';
 /**
  * Generated class for the BooksdetailsPage page.
  *
@@ -30,8 +31,12 @@ export class BooksdetailsPage {
   purchased: any
   bpurchased: boolean
   readbook: boolean
+  fontset: any
+  fontsize : any
+  user: any
 
-  constructor(public platform: Platform, public navCtrl: NavController, public navParams: NavParams, private angularFireAuth: AngularFireAuth, private payPal: PayPal, ) {
+  constructor(public platform: Platform, public navCtrl: NavController, public navParams: NavParams, private angularFireAuth: AngularFireAuth, private payPal: PayPal,
+    public font: FontprovProvider) {
     var vm = this
     // If we navigated to this page, we will have an item available as a nav param
     vm.selectedBook = navParams.get('item');
@@ -54,6 +59,9 @@ export class BooksdetailsPage {
         }
 
       });
+      this.getFont()
+      this.getFontSize()
+      this.initUser()
     })
   }
 
@@ -75,12 +83,12 @@ export class BooksdetailsPage {
     var vm = this
     var ref = firebase.database().ref();
     vm.payPal.init({
-      PayPalEnvironmentProduction: 'YOUR_PRODUCTION_CLIENT_ID',
+      PayPalEnvironmentProduction: 'AZRdPOP5s3UL_KjdvRoUStzJE4lr9qxUznW5Lq6n0w4ppHVnzgQ4XwKsZTsWiWWR6nGzxenwJB8U1WkW',
       PayPalEnvironmentSandbox: 'ASWcU1Ssk6MJiidXo75mFRFx10Iu3YrueFsSVtzbWIuERSgL66WNdrXs8LHTQ6dOIVm1op2u7oGO-5LS'
     }).then(() => {
       console.log("then")
       // Environments: PayPalEnvironmentNoNetwork, PayPalEnvironmentSandbox, PayPalEnvironmentProduction
-      vm.payPal.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
+      vm.payPal.prepareToRender('PayPalEnvironmentProduction', new PayPalConfiguration({
         // Only needed if you get an "Internal Service Error" after PayPal login!
         //payPalShippingAddressOption: 2 // PayPalShippingAddressOptionPayPal
       })).then(() => {
@@ -127,15 +135,40 @@ export class BooksdetailsPage {
   readBook() {
     var vm = this
     vm.readbook = false
-     if(vm.bpurchased){
+    if (vm.bpurchased) {
       vm.readbook = true
-     }else{
+    } else {
       vm.readbook = false
-     }
+    }
 
   }
-  
-  goToLogin(){
+
+  goToLogin() {
     this.navCtrl.setRoot(LoginPage);
+  }
+
+  getFont() {
+    var vm = this
+    this.font.getFont().subscribe((fontset) => {
+      console.log(fontset)
+      vm.fontset = fontset
+    })
+
+  }
+
+  getFontSize() {
+    var vm = this
+    this.font.getFontSize().subscribe((fontsetsize) => {
+      vm.fontsize = fontsetsize
+    })
+
+  }
+
+  initUser() {
+    var vm = this
+    //Realtime database tracking of actual user 
+    firebase.database().ref('/profiles/' + this.userId).on('value', function (snapshot) {
+      vm.user = snapshot.val()
+    });
   }
 }

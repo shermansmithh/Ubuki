@@ -16,6 +16,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth'
 import {BooksdetailsPage} from '../pages/booksdetails/booksdetails'
 import {HttpClientModule} from '@angular/common/http';
 import {PayPal} from '@ionic-native/paypal/'
+import { FontprovProvider } from '../providers/fontprov/fontprov';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {PayPal} from '@ionic-native/paypal/'
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PayPal
+    PayPal,
+    FontprovProvider
    
   ]
 })
