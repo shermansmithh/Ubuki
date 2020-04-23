@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 import { Location } from "@angular/common";
+import {RegisterPage} from '../register/register'
 
 /**
  * Generated class for the LoginPage page.
@@ -55,4 +56,7 @@ export class LoginPage {
     this.navCtrl.setRoot(HelloIonicPage);
   }
 
+  goToRegisterPage(){
+    this.navCtrl.push(RegisterPage);
+  }
 }

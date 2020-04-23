@@ -8,6 +8,7 @@ import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import {LoginPage} from '../pages/login/login';
 import { AddbooksPage} from '../pages/addbooks/addbooks'
+import {RegisterPage}from '../pages/register/register'
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import firebaeConfig from  './firebase';
@@ -26,7 +27,8 @@ import { FontprovProvider } from '../providers/fontprov/fontprov';
     ListPage,
     LoginPage,
     AddbooksPage,
-    BooksdetailsPage
+    BooksdetailsPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { FontprovProvider } from '../providers/fontprov/fontprov';
     ListPage,
     LoginPage,
     AddbooksPage,
-    BooksdetailsPage
+    BooksdetailsPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,

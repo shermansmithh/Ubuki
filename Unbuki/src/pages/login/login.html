@@ -21,8 +21,11 @@
           <div *ngIf="error" class="headerText">Enter a valid email or password</div>
           <div class="input"><input [(ngModel)]="username" type="text" placeholder="Email" /></div>
           <div class="input"><input [(ngModel)]="password" type="password" placeholder="Password" /></div>
-          <div (click)="login()" class="login">Login</div>
+          <div (click)="login()" class="login">Login</div>         
+          <div class="register"> No account yet? <a (click)="goToRegisterPage()">Create an account.</a></div>
+          <div class="register"> Or Forgot? <a (click)="goToRegisterPage()">Click Here</a></div>
       </div> 
+      
   
   
 
