@@ -7,6 +7,7 @@ import firebase from 'firebase';
 import { LoginPage } from '../login/login'
 import { FontprovProvider } from '../../providers/fontprov/fontprov';
 import { Observable } from 'rxjs/Observable';
+import { e } from '@angular/core/src/render3';
 /**
  * Generated class for the BooksdetailsPage page.
  *
@@ -170,5 +171,7 @@ export class BooksdetailsPage {
     firebase.database().ref('/profiles/' + this.userId).on('value', function (snapshot) {
       vm.user = snapshot.val()
     });
+
+    
   }
 }

@@ -30,6 +30,15 @@
                     <div class="iconTxt" [style.color]="sideMenu == 'font'  ? '#00afd1' : 'black' ">Font</div>
 
                 </ion-row>
+             
+                <ion-row *ngIf="admin" align-items-center class="items" (click)="getAdmin()">
+                
+                    <div class="icon" [style.color]="sideMenu == 'addbooks'  ? '#00afd1' : 'black' ">
+                        <ion-icon name="add"></ion-icon>
+                    </div>
+                    <div class="iconTxt" [style.color]="sideMenu == 'addbooks'  ? '#00afd1' : 'black' ">Add Book</div>
+
+                </ion-row>
 
 
             </ion-col>

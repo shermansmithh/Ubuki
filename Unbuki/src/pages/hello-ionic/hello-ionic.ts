@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController, Platform, UrlSerializer } from 'ionic-angular';
 import { LoginPage } from '../login/login'
 import firebase from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FontprovProvider } from '../../providers/fontprov/fontprov';
 import { v } from '@angular/core/src/render3';
+import { AddbooksPage} from '../addbooks/addbooks'
 
 @Component({
   selector: 'page-hello-ionic',
@@ -15,6 +16,7 @@ export class HelloIonicPage {
   fontset: String
   userId: any
   user: any
+  admin : boolean
 
   constructor(platform: Platform, public navCtrl: NavController, private angularFireAuth: AngularFireAuth, public font: FontprovProvider) {
     var vm = this
@@ -34,7 +36,9 @@ export class HelloIonicPage {
     
   }
 
-  
+  addBook() {
+    this.navCtrl.push(AddbooksPage);
+  }
 
   goToLogin() {
     this.navCtrl.setRoot(LoginPage);
@@ -50,6 +54,11 @@ export class HelloIonicPage {
     firebase.database().ref('/profiles/' + this.userId).once('value', function (snapshot) {
       console.log(snapshot.val())
       vm.user = snapshot.val()
+      if(vm.user.admin){
+        vm.admin = true
+      }else{
+        vm.admin = false
+      }
     });
   }
 }
