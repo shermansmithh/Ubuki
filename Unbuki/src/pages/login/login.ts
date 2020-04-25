@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 import { Location } from "@angular/common";
 import {RegisterPage} from '../register/register'
+import {ForgetPage} from '../forget/forget'
 
 /**
  * Generated class for the LoginPage page.
@@ -58,5 +59,8 @@ export class LoginPage {
 
   goToRegisterPage(){
     this.navCtrl.push(RegisterPage);
+  }
+  goToForgetPage(){
+    this.navCtrl.push(ForgetPage);
   }
 }
