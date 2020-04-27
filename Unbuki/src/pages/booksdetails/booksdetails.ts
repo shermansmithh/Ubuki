@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ToastController } from 'ionic-angular';
 import { ItemDetailsPage } from '../item-details/item-details';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/';
@@ -8,6 +8,7 @@ import { LoginPage } from '../login/login'
 import { FontprovProvider } from '../../providers/fontprov/fontprov';
 import { Observable } from 'rxjs/Observable';
 import { e } from '@angular/core/src/render3';
+
 /**
  * Generated class for the BooksdetailsPage page.
  *
@@ -35,13 +36,18 @@ export class BooksdetailsPage {
   fontset: any
   fontsize : any
   user: any
+  free : boolean
+  admin: boolean = false
+  bookid : any 
+  selectedFile: ImageSnippet;
 
   constructor(public platform: Platform, public navCtrl: NavController, public navParams: NavParams, private angularFireAuth: AngularFireAuth, private payPal: PayPal,
-    public font: FontprovProvider) {
+    public font: FontprovProvider, public toast : ToastController) {
     var vm = this
     // If we navigated to this page, we will have an item available as a nav param
     vm.selectedBook = navParams.get('item');
-    vm.currentPage = 1
+    vm.bookid = vm.selectedBook.bookId
+    vm.currentPage = 0
     vm.pages = vm.selectedBook.pages
     vm.currentBookCurrentPageData = vm.selectedBook.pages[vm.currentPage]
     vm.totalpages = vm.pages.length
@@ -53,6 +59,11 @@ export class BooksdetailsPage {
         } else {
           vm.logged = false
         }
+        if(vm.selectedBook.amount == "free" || "FREE"|| 0){
+          vm.free = true
+        }else{
+          vm.free = false
+        }
 
         if (firebase.auth().currentUser !== null) {
           this.userId = firebase.auth().currentUser.uid;
@@ -63,8 +74,26 @@ export class BooksdetailsPage {
       this.getFont()
       this.getFontSize()
       this.initUser()
+      this.checkIfAdmin()
     })
   }
+
+
+  processFile(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+      this.currentBookCurrentPageData.url= this.selectedFile.src
+      
+    });
+
+    reader.readAsDataURL(file);
+  }
+
+
 
   previousPage() {
     var vm = this
@@ -72,6 +101,22 @@ export class BooksdetailsPage {
     vm.currentBookCurrentPageData = vm.selectedBook.pages[vm.currentPage]
   }
 
+  saveChanges(){
+
+    
+
+    var vm = this
+    var ref = firebase.database().ref();
+
+    var books = ref.child('books');
+    books.child(vm.bookid).update({  
+      pages: vm.selectedBook.pages
+      
+    }).catch(function(error) {
+      vm.toast.create({ message: "Error By Uploading", duration: 2000 }).present()
+    })
+
+  }
 
   nextPage() {
     var vm = this
@@ -79,6 +124,21 @@ export class BooksdetailsPage {
     vm.currentBookCurrentPageData = vm.selectedBook.pages[vm.currentPage]
   }
 
+  checkIfAdmin() {
+    var vm = this
+    this.userId = firebase.auth().currentUser.uid;
+    //Realtime database tracking of actual user 
+    firebase.database().ref('/profiles/' + this.userId).once('value', function (snapshot) {
+      console.log(snapshot.val())
+      vm.user = snapshot.val()
+      console.log(vm.user)
+      if(vm.user.admin){
+        vm.admin = true
+      }else{
+        vm.admin = false
+      }
+    });
+  }
 
   payWithPaypal() {
     var vm = this
@@ -115,6 +175,7 @@ export class BooksdetailsPage {
     });
   }
 
+
   getPurchased() {
     var vm = this
 
@@ -142,6 +203,11 @@ export class BooksdetailsPage {
       vm.readbook = false
     }
 
+  }
+
+  readBookFree(){
+    var vm = this
+    vm.readbook = true
   }
 
   goToLogin() {
@@ -174,4 +240,8 @@ export class BooksdetailsPage {
 
     
   }
+}
+
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
 }

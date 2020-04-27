@@ -22,10 +22,10 @@
   <div id="bookPage" *ngIf="!readbook">
     <div class="bookPageHeader">
       <div class="cover"><img [src]="selectedBook.coverLink" /></div>
-      <div class="amount" *ngIf="selectedBook.amount == 'free' ">FREE</div>
+      <div class="amount" *ngIf="selectedBook.amount == 'free'|| 0|| 0.00 ">FREE</div>
 
       <div class="amount" *ngIf="!readbook && logged && !bpurchased">${{selectedBook.amount}}</div>
-      <div class="amount" *ngIf="!logged && selectedBook.amount !== 'free' ">${{selectedBook.amount}}</div>
+      <div class="amount" *ngIf="!logged && !free">${{selectedBook.amount}}</div>
       <div class="amount" *ngIf="bpurchased">PURCHASED</div>
 
 
@@ -64,12 +64,44 @@
   <!-- 
         // When read is selected -->
 
-  <ion-row *ngIf="readbook" class="BookReading">
+  <ion-row *ngIf="readbook &&!admin" class="BookReading">
     <ion-col col-12 col-sm class="coverCollumn"> <img [src]="currentBookCurrentPageData.url" /></ion-col>
     <ion-col col-12 col-sm class="textCollumn">
       <div [style.font-family]="fontset" [style.font-size]="fontsize" [innerHTML]="currentBookCurrentPageData.text">&nbsp;</div>
     </ion-col>
+
+
+
   </ion-row>
+
+  <ion-row *ngIf="readbook && admin" class="BookReading">
+    <ion-col col-12 col-sm class="coverCollumn"> <img [src]="currentBookCurrentPageData.url" />
+    <ion-row>
+      <div class= input>
+        <span>Select Cover Image:</span>
+        <input #imageInput
+               type="file"
+               accept="image/*"
+               (change)="processFile(imageInput)">
+              </div>
+    </ion-row>
+    </ion-col>
+    <ion-col col-12 col-sm class="textCollumnEddit">
+      <h1>Eddit Mode</h1>
+      <ion-textarea maxlength="2000" [(ngModel)]="currentBookCurrentPageData.text" placeholder="{{currentBookCurrentPageData.text}}"></ion-textarea>
+      <ion-row>
+    
+        <ion-col col-4 class="text-center ">
+          <button ion-button icon-only color="light" class="button-muted" (click)="saveChanges()">
+            <ion-icon name="md-settings"></ion-icon>
+          </button>
+          <div class="text-muted text-xs l-s-1x m-t-xs" (click)="saveChanges()"> Save Page Changes</div>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+    
+  </ion-row>
+
 
 
 
@@ -77,15 +109,15 @@
 <ion-footer>
 
   <!-- //If book is free -->
-  <div *ngIf="selectedBook.amount == 'free'" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
+  <div *ngIf="free" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
+    <div (click)="readBookFree()" class="btn">Read Book</div>
+  </div>
+
+  <div *ngIf="!readbook && logged && bpurchased &&!free" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
     <div (click)="readBook()" class="btn">Read Book</div>
   </div>
 
-  <div *ngIf="!readbook && logged && bpurchased" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
-    <div (click)="readBook()" class="btn">Read Book</div>
-  </div>
-
-  <div *ngIf="!readbook && logged && !bpurchased" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
+  <div *ngIf="!readbook && logged && !bpurchased &&!free" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
     <div class="btn" (click)="payWithPaypal()">Buy Book </div>
   </div>
 
@@ -98,9 +130,13 @@
     <div *ngIf="currentBookCurrentPageData.page > 1" (click)="previousPage()" class="btn-left">
       <ion-icon name="arrow-back"></ion-icon>
     </div>
-    <div *ngIf="currentBookCurrentPageData.page != totalpages -1" (click)="nextPage()" class="btn-right">
+    <div *ngIf="currentBookCurrentPageData.page != totalpages" (click)="nextPage()" class="btn-right">
       <ion-icon name="arrow-forward"></ion-icon>
     </div>
   </div>
+
+
+
+  
 
 </ion-footer>

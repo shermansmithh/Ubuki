@@ -18,4 +18,42 @@
 
 <ion-content padding>
 
+
+  <!-- bookId: newBooksKey,
+  coverLink: '',
+  author: '',
+  amount:'',
+  title:'',
+  editor:'',
+  illustrator:'',
+  digitalProduction:'',
+  imprenta:'',
+  pages: pages -->
+
+  <div id="AddBookage" >
+    <div id="loginPage" >
+    <div class="input"><input [(ngModel)]="author" type="text" placeholder="Author"/></div>
+    <div class="input"><input [(ngModel)]="amount" type="number" placeholder="Cost"/></div>
+    <div class="input"><input [(ngModel)]="title" type="text" placeholder="Title"/></div>
+    <div class="input"><input [(ngModel)]="editor" type="text" placeholder="Editor"/></div>
+    <div class="input"><input [(ngModel)]="illustrator" type="text" placeholder="Illustrator"/></div>
+    <div class="input"><input [(ngModel)]="digitalProduction" type="text" placeholder="DigitalProduction"/></div>
+    <div class="input"><input [(ngModel)]="imprenta" type="text" placeholder="Imprenta"/></div>
+    <div class="input"><input [(ngModel)]="pagecount" type="number" placeholder="Pages Amount"/></div>
+
+    <div class= input>
+      <span>Select Cover Image:</span>
+      <input #imageInput
+             type="file"
+             accept="image/*"
+             (change)="processFile(imageInput)">
+            </div>
+
+    <div (click)="createBook()" class="login">Create Book</div>   
+    </div>
+      
+    <ion-img [src]="image"></ion-img>
+</div> 
+
+
 </ion-content>
