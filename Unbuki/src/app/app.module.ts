@@ -19,6 +19,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {PayPal} from '@ionic-native/paypal/'
 import { FontprovProvider } from '../providers/fontprov/fontprov';
 import {ForgetPage} from '../pages/forget/forget';
+import { AccesPage} from '../pages/acces/acces';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {ForgetPage} from '../pages/forget/forget';
     AddbooksPage,
     BooksdetailsPage,
     RegisterPage,
-    ForgetPage
+    ForgetPage,
+    AccesPage
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import {ForgetPage} from '../pages/forget/forget';
     AddbooksPage,
     BooksdetailsPage,
     RegisterPage,
-    ForgetPage
+    ForgetPage,
+    AccesPage
   ],
   providers: [
     StatusBar,

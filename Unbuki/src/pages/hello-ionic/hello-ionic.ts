@@ -6,7 +6,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { FontprovProvider } from '../../providers/fontprov/fontprov';
 import { v } from '@angular/core/src/render3';
 import { AddbooksPage} from '../addbooks/addbooks'
-
+import {AccesPage} from '../acces/acces'
 @Component({
   selector: 'page-hello-ionic',
   templateUrl: 'hello-ionic.html'
@@ -33,6 +33,10 @@ export class HelloIonicPage {
    
     })
 
+  }
+
+  edditAcces(){
+    this.navCtrl.push(AccesPage);
   }
 
   addBook() {
