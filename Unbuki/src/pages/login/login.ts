@@ -5,6 +5,7 @@ import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 import { Location } from "@angular/common";
 import {RegisterPage} from '../register/register'
 import {ForgetPage} from '../forget/forget'
+import firebase from 'firebase';
 
 /**
  * Generated class for the LoginPage page.
@@ -32,6 +33,8 @@ export class LoginPage {
   }
 
   async login() {
+    var ref = firebase.database().ref();
+
     var vm = this
     const { username, password } = this
     try {
@@ -41,6 +44,24 @@ export class LoginPage {
       if (res.user) {
         vm.error = false
         this.navCtrl.setRoot(HelloIonicPage);
+      
+        var ref = firebase.database().ref();
+        var logins = ref.child('onlinestatus').child(res.user.uid);
+        logins.once('value', function(snapshot) {
+
+            var init
+            var amount = snapshot.val().amount+ 1;
+            if(amount == undefined || null){
+              init = 1
+            }
+          logins.update({
+            uid: res.user.uid,
+            time: firebase.database.ServerValue.TIMESTAMP,
+            amount: amount ? amount: init,
+          })
+        });
+       
+
       }
 
 

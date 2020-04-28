@@ -107,9 +107,7 @@ export class MyApp {
     });
   }
 
-  addBook() {
-    this.nav.setRoot(AddbooksPage);
-  }
+
 
   initUser() {
     var vm = this

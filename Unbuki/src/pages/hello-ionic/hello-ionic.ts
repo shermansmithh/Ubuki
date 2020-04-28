@@ -33,7 +33,6 @@ export class HelloIonicPage {
    
     })
 
-    
   }
 
   addBook() {
@@ -44,7 +43,25 @@ export class HelloIonicPage {
     this.navCtrl.setRoot(LoginPage);
   }
 
-  logout() {
+  logout() { 
+    var vm = this 
+    
+    var ref = firebase.database().ref();
+    var logins = ref.child('onlinestatus').child(vm.userId);
+    logins.once('value', function(snapshot) {
+
+        var init
+        var amount = snapshot.val().amount - 1;
+        if(amount == undefined || null){
+          init = 1
+        }
+      logins.update({
+        uid:  vm.userId,
+        time: firebase.database.ServerValue.TIMESTAMP,
+        amount: amount ? amount: init,
+      })
+    });
+   
     firebase.auth().signOut()
   }
 
