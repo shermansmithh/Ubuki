@@ -20,6 +20,7 @@ import {PayPal} from '@ionic-native/paypal/'
 import { FontprovProvider } from '../providers/fontprov/fontprov';
 import {ForgetPage} from '../pages/forget/forget';
 import { AccesPage} from '../pages/acces/acces';
+import {AcsdetailsPage} from '../pages/acsdetails/acsdetails'
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { AccesPage} from '../pages/acces/acces';
     BooksdetailsPage,
     RegisterPage,
     ForgetPage,
-    AccesPage
+    AccesPage,
+
+    AcsdetailsPage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,9 @@ import { AccesPage} from '../pages/acces/acces';
     BooksdetailsPage,
     RegisterPage,
     ForgetPage,
-    AccesPage
+    AccesPage,
+
+    AcsdetailsPage
   ],
   providers: [
     StatusBar,

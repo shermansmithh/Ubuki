@@ -55,9 +55,11 @@ export class HelloIonicPage {
     logins.once('value', function(snapshot) {
 
         var init
-        var amount = snapshot.val().amount - 1;
-        if(amount == undefined || null){
-          init = 1
+        var amount 
+        if(amount == undefined || null ||0){
+          init = 0
+        }else{
+          amount = snapshot.val().amount - 1;
         }
       logins.update({
         uid:  vm.userId,

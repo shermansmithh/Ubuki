@@ -68,13 +68,14 @@ export class BooksdetailsPage {
         if (firebase.auth().currentUser !== null) {
           this.userId = firebase.auth().currentUser.uid;
           vm.getPurchased()
+          vm.checkIfAdmin()
         }
 
       });
       this.getFont()
       this.getFontSize()
       this.initUser()
-      this.checkIfAdmin()
+    
     })
   }
 

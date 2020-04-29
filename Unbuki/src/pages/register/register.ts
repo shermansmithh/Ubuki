@@ -37,8 +37,11 @@ export class RegisterPage {
 			() =>{
         ref.child('profiles').child(firebase.auth().currentUser.uid).update({
           uid: firebase.auth().currentUser.uid,
-          name: vm.name
+          name: vm.name,
+          totalamount: 1
         })
+        ref.child('onlinestatus').child(firebase.auth().currentUser.uid).update({totalamount : 1})
+
         this.navCtrl.setRoot(HelloIonicPage)
       } ,
 			error => this.signupError = error.message

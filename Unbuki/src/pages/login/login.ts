@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { HelloIonicPage } from '../hello-ionic/hello-ionic';
 import { Location } from "@angular/common";
@@ -25,7 +25,7 @@ export class LoginPage {
   password: string = ""
   error: boolean = false
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth, private location: Location) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth, private location: Location, public toast : ToastController) {
   }
 
   ionViewDidLoad() {
@@ -43,14 +43,23 @@ export class LoginPage {
 
       if (res.user) {
         vm.error = false
-        this.navCtrl.setRoot(HelloIonicPage);
+     
       
         var ref = firebase.database().ref();
         var logins = ref.child('onlinestatus').child(res.user.uid);
         logins.once('value', function(snapshot) {
 
             var init
-            var amount = snapshot.val().amount+ 1;
+            var amount = snapshot.val().amount
+            var totalamount = snapshot.val().totalamount;
+
+            if(amount < totalamount){
+              var amount = snapshot.val().amount+ 1;
+              vm.navCtrl.setRoot(HelloIonicPage);
+            } else{
+              vm.toast.create({ message: "Logout of other devices (limit exceeded)", duration: 2000 }).present()
+            }
+            
             if(amount == undefined || null){
               init = 1
             }
@@ -60,11 +69,8 @@ export class LoginPage {
             amount: amount ? amount: init,
           })
         });
-       
-
+  
       }
-
-
     } catch (err) {
       vm.error = true
       console.dir(err)

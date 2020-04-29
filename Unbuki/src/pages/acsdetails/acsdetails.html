@@ -1,0 +1,37 @@
+<!--
+  Generated template for the AcsdetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+  <ion-navbar color="toolbar">
+
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Eddit Details</ion-title>
+  </ion-navbar>
+
+
+</ion-header>
+
+<ion-content padding>
+ 
+  <ion-row>
+    <ion-col text-center>
+      <h3>User / Organisation : {{user.name}}</h3>
+    <h3 *ngIf="userinfo">Total Acces : {{userinfo.totalamount}}</h3>
+    </ion-col>
+  </ion-row>
+
+  <div id="loginPage" >
+
+    <div class="input"><input [(ngModel)]="user.totalamount" type="number" placeholder="Acces Amount"/></div>
+         
+    <div (click)="changeAmount()" class="login">Save Change</div>       
+</div> 
+
+
+</ion-content>
+
