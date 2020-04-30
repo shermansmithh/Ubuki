@@ -29,6 +29,7 @@ export class AddbooksPage {
   pagecount: any
   image: any
   pages: any
+  voorword: any
  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public toast: ToastController) {
@@ -53,6 +54,7 @@ export class AddbooksPage {
       digitalProduction: vm.digitalProduction ? vm.digitalProduction: "Benjamin Smith",
       imprenta: vm.imprenta? vm.imprenta :"JCI IOBA Curaçao",
       coverLink : vm.image ? vm.image : null,
+      voorword : vm.voorword ? vm.voorword : null,
       pages : vm.pages ? vm.pages: null }).then(function(){
 
       vm.toast.create({ message: "Book Is Uploaded In Database Succesfully", duration: 2000 }).present()

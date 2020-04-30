@@ -145,9 +145,6 @@ export class BooksdetailsPage {
   }
 
   saveChanges(){
-
-    
-
     var vm = this
     var ref = firebase.database().ref();
 
@@ -161,7 +158,7 @@ export class BooksdetailsPage {
 
   }
   ionViewDidEnter(){
-    this.checkIfAdmin()
+
   }
   nextPage() {
     var vm = this
