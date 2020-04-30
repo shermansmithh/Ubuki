@@ -58,7 +58,6 @@
     </div>
 
 
-
   </div>
   <!-- 
         // When read is selected -->
@@ -112,17 +111,16 @@
 
 </ion-content>
 <ion-footer>
+  
  
-  <div *ngIf="adminboolean" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
+
+
+
+ <div *ngIf="(selectedBook.amount == 'free'|| 0|| 0.00) || adminboolean" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
     <div (click)="readBookFree()" class="btn">Read Book</div>
-  </div>
+  </div> 
 
-
-  <div *ngIf="(selectedBook.amount == 'free'|| 0|| 0.00) || adminboolean" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
-    <div (click)="readBookFree()" class="btn">Read Book</div>
-  </div>
-
-  <div *ngIf="!bpurchased &&! (selectedBook.amount == 'free'|| 0|| 0.00)" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
+  <div *ngIf="!bpurchased &&! (selectedBook.amount == 'free'|| 0|| 0.00) &&!admin" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
     <div (click)="payWithPaypal()" class="btn">Buy Book</div>
   </div>
 
