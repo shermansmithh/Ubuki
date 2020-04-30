@@ -40,6 +40,7 @@ export class BooksdetailsPage {
   admin: boolean = false
   bookid : any 
   selectedFile: ImageSnippet;
+  adminboolean : boolean = true
 
   constructor(public platform: Platform, public navCtrl: NavController, public navParams: NavParams, private angularFireAuth: AngularFireAuth, private payPal: PayPal,
     public font: FontprovProvider, public toast : ToastController) {
@@ -55,6 +56,8 @@ export class BooksdetailsPage {
     platform.ready().then(() => {
       this.angularFireAuth.authState.subscribe(user => {
         if (user) {
+            
+          vm.checkIfAdmin()
           vm.logged = true
         } else {
           vm.logged = false
@@ -67,8 +70,8 @@ export class BooksdetailsPage {
 
         if (firebase.auth().currentUser !== null) {
           this.userId = firebase.auth().currentUser.uid;
-          vm.getPurchased()
-          vm.checkIfAdmin()
+        
+          
         }
 
       });
@@ -79,6 +82,45 @@ export class BooksdetailsPage {
     })
   }
 
+  checkIfFree(){
+    var vm = this
+    if(vm.selectedBook.amount == "free" || "FREE"|| 0){
+      return true
+    }else{
+      return false
+    }
+  }
+  encodeImageUri(imageUri, callback) {
+    var c = document.createElement('canvas');
+    var ctx = c.getContext("2d");
+    var img = new Image();
+    img.onload = function () {
+        var aux: any = this;
+        c.width = aux.width;
+        c.height = aux.height;
+        ctx.drawImage(img, 0, 0);
+        var dataURL = c.toDataURL("image/jpeg");
+        callback(dataURL);
+    };
+    img.src = imageUri;
+};
+
+  uploadImage(imageURI) {
+
+    var unique = Date.now().toString()
+    return new Promise<any>((resolve, reject) => {
+        let storageRef = firebase.storage().ref();
+        let imageRef = storageRef.child('profiles').child(this.userId).child(unique);
+        this.encodeImageUri(imageURI, function (image64) {
+            imageRef.putString(image64, 'data_url')
+                .then(snapshot => {
+                    resolve(snapshot)
+                }, err => {
+                    reject(err);
+                })
+        })
+    })
+}
 
   processFile(imageInput: any) {
     const file: File = imageInput.files[0];
@@ -118,11 +160,30 @@ export class BooksdetailsPage {
     })
 
   }
-
+  ionViewDidEnter(){
+    this.checkIfAdmin()
+  }
   nextPage() {
     var vm = this
     this.currentPage++
     vm.currentBookCurrentPageData = vm.selectedBook.pages[vm.currentPage]
+  }
+
+  addExtraPage(){
+    var vm = this
+    var ref = firebase.database().ref();
+    vm.selectedBook.pages.push({
+      page: vm.totalpages +1,
+      url:'',
+     text: 'Sample Text '})
+    var books = ref.child('books');
+    books.child(vm.bookid).update({  
+      pages: vm.selectedBook.pages
+      
+    }).catch(function(error) {
+      vm.toast.create({ message: "Error By Uploading", duration: 2000 }).present()
+    })
+    vm.totalpages ++
   }
 
   checkIfAdmin() {
@@ -132,8 +193,9 @@ export class BooksdetailsPage {
     firebase.database().ref('/profiles/' + this.userId).once('value', function (snapshot) {
       console.log(snapshot.val())
       vm.user = snapshot.val()
-      console.log(vm.user)
-      if(vm.user.admin){
+     vm.adminboolean = snapshot.val().admin
+     console.log(vm.adminboolean)
+      if(snapshot.val().admin){
         vm.admin = true
       }else{
         vm.admin = false
@@ -155,7 +217,7 @@ export class BooksdetailsPage {
         //payPalShippingAddressOption: 2 // PayPalShippingAddressOptionPayPal
       })).then(() => {
         let key = vm.selectedBook.bookId
-        let payment = new PayPalPayment('2', this.currency, 'Description', 'sale');
+        let payment = new PayPalPayment(vm.selectedBook.amount, this.currency, vm.selectedBook.title, vm.selectedBook.author);
         vm.payPal.renderSinglePaymentUI(payment).then((res) => {
           var userRequestRef = ref.child('purchased');
 
@@ -184,12 +246,12 @@ export class BooksdetailsPage {
 
     var hid = ref.child('purchased').child(vm.userId).child(vm.selectedBook.bookId)
 
-    hid.on('value', function (snapshot) {
+    hid.once('value', function (snapshot) {
       if (snapshot.exists()) {
         vm.purchased = snapshot.val()
-        vm.bpurchased = true
+        return true
       } else {
-        vm.bpurchased = false
+        return false
         vm.purchased = {}
       }
     })

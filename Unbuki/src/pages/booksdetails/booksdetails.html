@@ -24,8 +24,7 @@
       <div class="cover"><img [src]="selectedBook.coverLink" /></div>
       <div class="amount" *ngIf="selectedBook.amount == 'free'|| 0|| 0.00 ">FREE</div>
 
-      <div class="amount" *ngIf="!readbook && logged && !bpurchased">${{selectedBook.amount}}</div>
-      <div class="amount" *ngIf="!logged && !free">${{selectedBook.amount}}</div>
+      <div class="amount" *ngIf="!bpurchased &&! (selectedBook.amount == 'free'|| 0|| 0.00)">${{selectedBook.amount}}</div>
       <div class="amount" *ngIf="bpurchased">PURCHASED</div>
 
 
@@ -97,6 +96,12 @@
           </button>
           <div class="text-muted text-xs l-s-1x m-t-xs" (click)="saveChanges()"> Save Page Changes</div>
         </ion-col>
+        <ion-col col-4 class="text-center " *ngIf="currentBookCurrentPageData.page == totalpages" >
+          <button ion-button icon-only color="light" class="button-muted"(click)="addExtraPage()" >
+            <ion-icon name="add"></ion-icon>
+          </button>
+          <div class="text-muted text-xs l-s-1x m-t-xs" (click)="addExtraPage()"> Add Extra Page</div>
+        </ion-col>
       </ion-row>
     </ion-col>
     
@@ -107,19 +112,24 @@
 
 </ion-content>
 <ion-footer>
-
-  <!-- //If book is free -->
-  <div *ngIf="free" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
+ 
+  <div *ngIf="adminboolean" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
     <div (click)="readBookFree()" class="btn">Read Book</div>
   </div>
 
-  <div *ngIf="!readbook && logged && bpurchased &&!free" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
+
+  <div *ngIf="(selectedBook.amount == 'free'|| 0|| 0.00) || adminboolean" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
+    <div (click)="readBookFree()" class="btn">Read Book</div>
+  </div>
+
+  <div *ngIf="!bpurchased &&! (selectedBook.amount == 'free'|| 0|| 0.00)" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
+    <div (click)="payWithPaypal()" class="btn">Buy Book</div>
+  </div>
+
+  <div *ngIf="bpurchased" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
     <div (click)="readBook()" class="btn">Read Book</div>
   </div>
 
-  <div *ngIf="!readbook && logged && !bpurchased &&!free" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
-    <div class="btn" (click)="payWithPaypal()">Buy Book </div>
-  </div>
 
   <div *ngIf="!logged" style="bottom: 0; position: fixed;" class="footerBtn footerButton">
     <div (click)="goToLogin()" class="btn">Login to Read Book</div>
