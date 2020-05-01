@@ -43,7 +43,11 @@ export class AddbooksPage {
     var ref = firebase.database().ref();
     var books = ref.child('books');
     var newBooksKey = firebase.database().ref().child('books').push().key;
-    this.createPages(vm.pagecount)
+    if(vm.pagecount != 0 || undefined){
+      this.createPages(vm.pagecount)
+    }else{
+      this.createPages(1)
+    }
 
     books.child(newBooksKey).update({  bookId: newBooksKey  ,
       author: vm.author ? vm.author : null,
