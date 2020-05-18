@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <name>Un Buki</name>
+    <description>The Project “Un Buki Pa Lesa” started back in 2016 as a gift to the community of Curacao at the celebration of the 35th years of existence of JCI Involvement of Banda Ariba (IOBA) Curacao. “Un Buki Pa Lesa” contributes to the development of education in Curacao in a SMART way. In the first face of the project (2016) the active young people of JCI IOBA Curacao joined forces and wrote small stories for children of primary school in our language Papiamento.</description>
+    <author email="unbukipalesa@gmail.com" href="http://www.unbukipalesa.com">Ionic Framework Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

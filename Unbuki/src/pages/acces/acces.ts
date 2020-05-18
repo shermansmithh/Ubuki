@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController  } from 'ionic-angular';
 import firebase from 'firebase';
-import {AccesdetailsPage} from '../accesdetails/accesdetails'
+// import {AccesdetailsPage} from '../accesdetails/accesdetails'
 import {LoginPage} from'../login/login'
 import  {AcsdetailsPage } from '../acsdetails/acsdetails'
 /**
