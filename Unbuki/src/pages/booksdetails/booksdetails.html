@@ -142,6 +142,7 @@
       <ion-icon name="arrow-back"></ion-icon>
     </div>
     <div *ngIf="currentBookCurrentPageData.page != totalpages" (click)="nextPage()" class="btn-right">
+      {{currentBookCurrentPageData.page}}
       <ion-icon name="arrow-forward"></ion-icon>
     </div>
   </div>

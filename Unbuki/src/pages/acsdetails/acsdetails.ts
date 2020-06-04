@@ -9,7 +9,6 @@ import firebase from 'firebase';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-acsdetails',
   templateUrl: 'acsdetails.html',

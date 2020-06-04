@@ -9,7 +9,7 @@ import firebase from 'firebase';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-forget',
   templateUrl: 'forget.html',

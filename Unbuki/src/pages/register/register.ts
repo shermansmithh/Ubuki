@@ -11,7 +11,7 @@ import { dateDataSortValue } from 'ionic-angular/umd/util/datetime-util';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
